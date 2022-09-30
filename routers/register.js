@@ -10,9 +10,7 @@ router.post("/register", async ({ body }, res) => {
       name,
       mobileNumber,
     });
-
     const saveUserForm = await formCreate.save();
-    // sendEmail(email);
     res.status(201).send({
       message: "User Successfully Registered",
       id: saveUserForm._id,
@@ -21,16 +19,28 @@ router.post("/register", async ({ body }, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/register", async ({ body }, res) => {
+router.get("/admin", async (req, res) => {
     try {
   
       const UserForm = await Form.find();
-      res.status(201).send({
-       UserForm
-      });
+      // res.status(200).send(UserForm[0].mobileNumber);
+      res.render("admin",{
+        UserForm : UserForm
+      })
     } catch (err) {
       res.status(400).send(`err ${err}`);
     }
   });
-
+  router.get("/form", async (req, res) => {
+    try {
+  
+      const UserForm = await Form.find();
+      res.status(200).send(UserForm);
+    } catch (err) {
+      res.status(400).send(`err ${err}`);
+    }
+  });
+  router.get("/success", async (req, res) => {
+   res.render("success");
+  });
 module.exports = router;
