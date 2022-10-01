@@ -1,7 +1,9 @@
 const express = require("express");
 const router = new express.Router();
 const Form = require("../models/form");
-
+router.get("/register", async (req,res)=>{
+  res.render("register")
+})
 router.post("/register", async ({ body }, res) => {
   try {
     const { name, mobileNumber } = body;
@@ -9,19 +11,15 @@ router.post("/register", async ({ body }, res) => {
     const formCreate = new Form({
       name,
       mobileNumber,
-    });
+    });   
     const saveUserForm = await formCreate.save();
-    res.status(201).send({
-      message: "User Successfully Registered",
-      id: saveUserForm._id,
-    });
+    res.redirect("/api/user/success");
   } catch (err) {
     res.status(400).send(`err ${err}`);
   }
 });
 router.get("/admin", async (req, res) => {
-    try {
-  
+    try { 
       const UserForm = await Form.find();
       // res.status(200).send(UserForm[0].mobileNumber);
       res.render("admin",{
