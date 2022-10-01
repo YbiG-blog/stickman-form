@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
     <style>
-       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
       * {
         margin: 0;
         padding: 0;
@@ -33,30 +33,32 @@
   </head>
   <body>
     <div class="container">
-      <div class="container m-2" >
-        <h3 style="display: flex; justify-content: center;" > <u>Data - Table</u></h3>
+      <div class="container m-2">
+        <h3
+          style="display: flex; justify-content: center; font-family: cursive"
+        >
+          <strong> EntriesDateWise</strong>
+        </h3>
       </div>
       <table class="table">
-        <thead style="color: rgb(36, 9, 194); font-weight: 600;" >
+        <thead style="color: rgb(36, 9, 194); font-weight: 600">
           <tr>
-            <th scope="col"> <h4>Name </h4></th>
-            <th scope="col"><h4>Mobile </h4></th>
-            <th scope="col"><h4> Token-No.</h4></th>
+            <th scope="col"><h4>Name</h4></th>
+            <th scope="col"><h4>Mobile</h4></th>
+            <th scope="col"><h4>TokenNum</h4></th>
           </tr>
         </thead>
         <tbody>
-          <% let i=0; %>
-          <% UserForm.forEach(e=> { %>
-          <form action="/admin" method="get">
+          <% let i=0; %> <% UserForm.forEach(e=> { %>
+          <form action="/admin/databydate" method="get">
             <tr>
               <!-- <th scope="row"><%= e %></th> -->
-              <td style="font-size: 19px; font-weight: 500;"><%= e.name %></td>
-              <td style="color: whitesmoke;"><%= e.mobileNumber %></td>
-              <td style="color: whitesmoke;"><%= e.tokenNumber+i %></td>
+              <td style="font-size: 19px; font-weight: 500"><%= e.name %></td>
+              <td style="color: whitesmoke"><%= e.mobileNumber %></td>
+              <td style="color: whitesmoke"><%= e.tokenNumber+i %></td>
             </tr>
           </form>
-          <% i+=1; %>
-          <% }); %>
+          <% i+=1; %> <% }); %>
         </tbody>
       </table>
     </div>

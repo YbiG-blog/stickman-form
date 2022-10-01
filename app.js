@@ -15,7 +15,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
-
 app.get("/api/user/", async (req, res) => {
   try {
     res.status(200).send("api is working....");

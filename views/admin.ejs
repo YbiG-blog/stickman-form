@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
     <style>
-       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
       * {
         margin: 0;
         padding: 0;
@@ -29,34 +29,69 @@
         padding: 10px;
         background: linear-gradient(135deg, #71b7e6, #9b59b6);
       }
+      .datewise {
+        display: flex;
+        float: right;
+        height: 45px;
+        margin: 35px 0;
+      }
+      .datewise button {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #77a9ca, #c291d6);
+      }
+      .datewise button a {
+        text-decoration: none;
+        color: white;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="container m-2" >
-        <h3 style="display: flex; justify-content: center;" > <u>Data - Table</u></h3>
-      </div>
+      <span class="datewise">
+        <button>
+          <a
+            href="/api/user/admin/databydate/<%= new Date().toISOString().substring(0, 10); %>"
+            target="_blank"
+          >
+            GetByDate</a
+          >
+        </button>
+      </span>
+      <span class="container m-2">
+        <h3
+          style="display: flex; justify-content: center; font-family: cursive"
+        >
+          <strong>TotalEntries</strong>
+        </h3>
+      </span>
       <table class="table">
-        <thead style="color: rgb(36, 9, 194); font-weight: 600;" >
+        <thead style="color: rgb(36, 9, 194); font-weight: 600">
           <tr>
-            <th scope="col"> <h4>Name </h4></th>
-            <th scope="col"><h4>Mobile </h4></th>
-            <th scope="col"><h4> Token-No.</h4></th>
+            <th scope="col"><h4>Name</h4></th>
+            <th scope="col"><h4>Mobile</h4></th>
+            <th scope="col"><h4>TokenNum</h4></th>
           </tr>
         </thead>
         <tbody>
-          <% let i=0; %>
-          <% UserForm.forEach(e=> { %>
+          <% let i=0; %> <% UserForm.forEach(e=> { %>
           <form action="/admin" method="get">
             <tr>
               <!-- <th scope="row"><%= e %></th> -->
-              <td style="font-size: 19px; font-weight: 500;"><%= e.name %></td>
-              <td style="color: whitesmoke;"><%= e.mobileNumber %></td>
-              <td style="color: whitesmoke;"><%= e.tokenNumber+i %></td>
+              <td style="font-size: 19px; font-weight: 500"><%= e.name %></td>
+              <td style="color: whitesmoke"><%= e.mobileNumber %></td>
+              <td style="color: whitesmoke"><%= e.tokenNumber+i %></td>
             </tr>
           </form>
-          <% i+=1; %>
-          <% }); %>
+          <% i+=1; %> <% }); %>
         </tbody>
       </table>
     </div>
