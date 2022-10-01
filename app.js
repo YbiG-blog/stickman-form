@@ -6,13 +6,13 @@ const formPage = require("./routers/register");
 const loginPage = require("./routers/login")
 const config = require("./config/config");
 const bodyParser = require("body-parser");
-
 const app = express();
 
-app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.get("/api/user/", async (req, res) => {
@@ -22,6 +22,7 @@ app.get("/api/user/", async (req, res) => {
     res.status(400).send(`err ${error}`);
   }
 });
+
 app.use("/api/user/", formPage);
 app.use("/api/user/", loginPage);
 

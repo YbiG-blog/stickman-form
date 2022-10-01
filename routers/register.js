@@ -1,6 +1,10 @@
 const express = require("express");
 const router = new express.Router();
 const Form = require("../models/form");
+const verify = require("../middleware/auth")
+const jwtDecode = require("jwt-decode");
+
+
 router.get("/register", async (req, res) => {
   res.render("register");
 });
@@ -19,7 +23,7 @@ router.post("/register", async ({ body }, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin/databydate/:date", async (req, res) => {
+router.get("/admin/databydate/:date", verify, async (req, res) => {
   try {
 
     const date = req.params.date;
@@ -37,8 +41,10 @@ router.get("/admin/databydate/:date", async (req, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin", async (req, res) => {
+router.get("/admin", verify, async (req, res) => {
   try {
+    // const token = req.cookies.jwt_stickman;
+    // console.log(token);
     const UserForm = await Form.find();
     // res.status(200).send(UserForm[0].mobileNumber);
     res.render("admin", {

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const router = new express.Router();
+const jwt = require("jsonwebtoken");
 
 router.get("/login", function(req, res) {
     res.render("login");
@@ -9,16 +10,28 @@ router.get("/login", function(req, res) {
 router.post("/login", ({ body }, res) => {
   try {
     const { adminId, password } = body;
-    console.log(adminId);
     if (adminId === process.env.ADMINID) {
+      const pay_load = { _id: process.env.ADMINID };
+      const cookie_token = jwt.sign(pay_load, process.env.TOKEN_SECRET_KEY);
+            //add cookie
+            res.cookie("jwt_stickman", cookie_token, {
+              secure: true,
+              expires: new Date(Date.now() + 86400000),
+              httpOnly: true,
+            });
       if (password === process.env.ADMINPASS) {
         res.redirect("/api/user/admin");
+        return res.status(200).json({
+          status: 'Login successful!',
+          success: true,
+          cookie_token: cookie_token
+        });
       }
       else{
-        res.send("Wrong Password");
+        res.send({ msg:"Wrong Password"});
       }
     } else {
-      res.send("!Invalid details");
+      res.send({ msg:"!Invalid details"});
     }
   } catch (err) {
     res.status(400).send(`err ${err}`);
