@@ -12,24 +12,13 @@ const FormSchema = new Schema(
       type: Number,
       required: [true, "Please add mobile"],
       unique: true,
+      min: 10,
+      max: 10
     },
     tokenNumber: {
       type: Number,
       default: 10001,
-    },
-      // mobileNumber: [
-    //   {
-    //     value: {
-    //       type: Number,
-    //       required: [true, "Please add mobile"],
-    //       unique: true,
-    //     },
-    //     tokenNumber: {
-    //       type: Number,
-    //       default: 10001,
-    //     },
-    //   },
-    // ],
+    }
   },
   { timestamps: true }
 );

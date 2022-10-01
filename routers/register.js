@@ -43,10 +43,14 @@ router.get("/admin/databydate/:date", verify, async (req, res) => {
 });
 router.get("/admin", verify, async (req, res) => {
   try {
-    // const token = req.cookies.jwt_stickman;
-    // console.log(token);
     const UserForm = await Form.find();
-    // res.status(200).send(UserForm[0].mobileNumber);
+    for (let i = 0; i < UserForm.length; i++) {     
+      let tokenValue = 10001+i;
+     await  Form.findOneAndUpdate({_id : UserForm[i]._id},{
+        $set : { tokenNumber: tokenValue }
+       })
+
+    };
     res.render("admin", {
       UserForm: UserForm,
     });
@@ -54,14 +58,7 @@ router.get("/admin", verify, async (req, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/form", async (req, res) => {
-  try {
-    const UserForm = await Form.find();
-    res.status(200).send(UserForm);
-  } catch (err) {
-    res.status(400).send(`err ${err}`);
-  }
-});
+
 router.get("/success", async (req, res) => {
   res.render("success");
 });

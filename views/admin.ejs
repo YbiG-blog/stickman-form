@@ -14,12 +14,14 @@
     />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
       }
+
       body {
         height: 100vh;
         display: flex;
@@ -29,12 +31,14 @@
         padding: 10px;
         background: linear-gradient(135deg, #71b7e6, #9b59b6);
       }
+
       .datewise {
         display: flex;
         float: right;
         height: 45px;
         margin: 35px 0;
       }
+
       .datewise button {
         height: 100%;
         width: 100%;
@@ -48,12 +52,14 @@
         transition: all 0.3s ease;
         background: linear-gradient(135deg, #77a9ca, #c291d6);
       }
+
       .datewise button a {
         text-decoration: none;
         color: white;
       }
     </style>
   </head>
+
   <body>
     <div class="container">
       <span class="datewise">
@@ -76,22 +82,27 @@
       <table class="table">
         <thead style="color: rgb(36, 9, 194); font-weight: 600">
           <tr>
-            <th scope="col"><h4>Name</h4></th>
-            <th scope="col"><h4>Mobile</h4></th>
-            <th scope="col"><h4>TokenNum</h4></th>
+            <th scope="col">
+              <h4>Name</h4>
+            </th>
+            <th scope="col">
+              <h4>Mobile</h4>
+            </th>
+            <th scope="col">
+              <h4>TokenNum</h4>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <% let i=0; %> <% UserForm.forEach(e=> { %>
+          <% UserForm.forEach(e=> { %>
           <form action="/admin" method="get">
             <tr>
-              <!-- <th scope="row"><%= e %></th> -->
               <td style="font-size: 19px; font-weight: 500"><%= e.name %></td>
               <td style="color: whitesmoke"><%= e.mobileNumber %></td>
-              <td style="color: whitesmoke"><%= e.tokenNumber+i %></td>
+              <td style="color: whitesmoke"><%= e.tokenNumber %></td>
             </tr>
           </form>
-          <% i+=1; %> <% }); %>
+          <% }); %>
         </tbody>
       </table>
     </div>

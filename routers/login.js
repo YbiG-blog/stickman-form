@@ -20,12 +20,7 @@ router.post("/login", ({ body }, res) => {
           expires: new Date(Date.now() + 86400000),
           httpOnly: true,
         });
-        res.redirect("/api/user/admin");
-        return res.status(200).json({
-          status: "Login successful!",
-          success: true,
-          cookie_token: cookie_token,
-        });
+        res.status(200).redirect("/api/user/admin");
       } else {
         res.send({ msg: "Wrong Password" });
       }

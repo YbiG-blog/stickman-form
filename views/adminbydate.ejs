@@ -49,16 +49,16 @@
           </tr>
         </thead>
         <tbody>
-          <% let i=0; %> <% UserForm.forEach(e=> { %>
+          <% UserForm.forEach(e=> { %>
           <form action="/admin/databydate" method="get">
             <tr>
               <!-- <th scope="row"><%= e %></th> -->
               <td style="font-size: 19px; font-weight: 500"><%= e.name %></td>
               <td style="color: whitesmoke"><%= e.mobileNumber %></td>
-              <td style="color: whitesmoke"><%= e.tokenNumber+i %></td>
+              <td style="color: whitesmoke"><%= e.tokenNumber %></td>
             </tr>
           </form>
-          <% i+=1; %> <% }); %>
+          <% }); %>
         </tbody>
       </table>
     </div>
