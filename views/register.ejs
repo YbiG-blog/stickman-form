@@ -11,6 +11,10 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/525fd5b530.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
       * {
@@ -69,6 +73,7 @@
         border: 1px solid #ccc;
         border-bottom-width: 2px;
         transition: all 0.3s ease;
+        margin-top: 6px;
       }
       .user-details .input-box input:focus,
       .user-details .input-box input:valid {
@@ -140,12 +145,20 @@
             </div>
             <div class="input-box" id="input-box">
               <span class="details">Mobile</span>
-              <input
+              <input class="mobilenum"
                 type="number"
                 name="mobileNumber"
                 placeholder="Enter your mobile"
                 required
               />
+              <i
+                class="fas fa-plus add-item"
+                style="
+                  float: right;
+                  border: 2px solid  #9b59b6;
+                  border-radius: 2px;
+                "
+              ></i>
             </div>
             <div class="button">
               <input type="submit" value="submit" />
@@ -159,5 +172,26 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script>
+      
+var addtocontainer = document.getElementById("input-box")
+var addelement=document.querySelector(".mobilenum");
+var addbtn = document.querySelector(".add-item");
+
+addbtn.addEventListener("click",function(){
+  if(addelement.value.trim()){
+  var input = document.createElement("input");
+  input.type = "number";
+  input.name="mobileNumber";
+  placeholder="Enter your mobile";
+  input.className = "mobilenum";
+  addtocontainer.appendChild(input);
+  }  
+else if(addelement.value === '')
+{
+    alert("Sorry, You cannot add mobile Nummber without filing it.");
+}
+}); 
+    </script>
   </body>
 </html>

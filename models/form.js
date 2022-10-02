@@ -8,17 +8,19 @@ const FormSchema = new Schema(
       required: [true, , "name is required"],
       minlength: [3, , "Minimum length of name is 3"],
     },
-    mobileNumber: {
-      type: Number,
-      required: [true, "Please add mobile"],
-      unique: true,
-      minlength: 10,
-      maxlength: 10
-    },
+    mobileNumber: [
+      {
+        type: Number,
+        required: [true, "Please add mobile"],
+        unique: true,
+        minlength: 10,
+        maxlength: 10,
+      },
+    ],
     tokenNumber: {
       type: Number,
       default: 10001,
-    }
+    },
   },
   { timestamps: true }
 );

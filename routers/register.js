@@ -1,9 +1,8 @@
 const express = require("express");
 const router = new express.Router();
 const Form = require("../models/form");
-const verify = require("../middleware/auth")
+const verify = require("../middleware/auth");
 const jwtDecode = require("jwt-decode");
-
 
 router.get("/register", async (req, res) => {
   res.render("register");
@@ -25,7 +24,6 @@ router.post("/register", async ({ body }, res) => {
 });
 router.get("/admin/databydate/:date", verify, async (req, res) => {
   try {
-
     const date = req.params.date;
     const UserForm = await Form.find();
     let dataByDate = [];
@@ -44,13 +42,16 @@ router.get("/admin/databydate/:date", verify, async (req, res) => {
 router.get("/admin", verify, async (req, res) => {
   try {
     const UserForm = await Form.find();
-    for (let i = 0; i < UserForm.length; i++) {     
-      let tokenValue = 10001+i;
-     await  Form.findOneAndUpdate({_id : UserForm[i]._id},{
-        $set : { tokenNumber: tokenValue }
-       })
-
-    };
+    for (let i = 1; i < UserForm.length; i++) {
+      let mobileLen = UserForm[i - 1].mobileNumber.length;
+      let tokenValue = UserForm[i - 1].tokenNumber + mobileLen;
+      await Form.findOneAndUpdate(
+        { _id: UserForm[i]._id },
+        {
+          $set: { tokenNumber: tokenValue },
+        }
+      );
+    }
     res.render("admin", {
       UserForm: UserForm,
     });
