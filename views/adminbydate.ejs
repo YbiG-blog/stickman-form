@@ -50,19 +50,19 @@
           </tr>
         </thead>
         <tbody>
-          <% let i=1; %> <% UserForm.forEach(e=> { %> <%
+          <% let i=1,j=1; %> <% UserForm.forEach(e=> { %> <%
           e.mobileNumber.forEach(o=> { %>
           <form action="/admin" method="get">
             <tr>
               <td style="font-size: 19px; font-weight: 500; color: black">
-                <%= i %>
+                <%= j %>
               </td>
               <td style="font-size: 19px; font-weight: 500"><%= e.name %></td>
               <td style="color: whitesmoke"><%= o %></td>
               <td style="color: whitesmoke"><%= e.tokenNumber+i-1 %></td>
             </tr>
           </form>
-          <% i+=1; %> <% }); %> <% i=1; %> <% }); %>
+          <% i+=1; j+=1; %> <% }); %> <% i=1; %> <% }); %>
         </tbody>
       </table>
     </div>
