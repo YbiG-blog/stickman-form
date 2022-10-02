@@ -43,13 +43,14 @@
       <table class="table">
         <thead style="color: rgb(36, 9, 194); font-weight: 600">
           <tr>
+            <th scope="col"><h4>S.No.</h4></th>
             <th scope="col"><h4>Name</h4></th>
             <th scope="col"><h4>Mobile</h4></th>
             <th scope="col"><h4>TokenNum</h4></th>
           </tr>
         </thead>
         <tbody>
-          <% UserForm.forEach(e=> { %>
+          <% let i=1; %> <% UserForm.forEach(e=> { %>
           <form action="/admin/databydate" method="get">
             <tr>
               <!-- <th scope="row"><%= e %></th> -->
@@ -58,7 +59,7 @@
               <td style="color: whitesmoke"><%= e.tokenNumber %></td>
             </tr>
           </form>
-          <% }); %>
+          <% i+=1; %> <% }); %>
         </tbody>
       </table>
     </div>
