@@ -54,9 +54,9 @@
       <table class="table">
         <thead style="color: black; font-weight: 500">
           <tr>
-            <th scope="col">
+            <!-- <th scope="col">
               <h4>S.No.</h4>
-            </th>
+            </th> -->
             <th scope="col">
               <h4>Name</h4>
             </th>
@@ -69,18 +69,13 @@
           </tr>
         </thead>
         <tbody>
-          <% let i=1; %> <% UserForm.forEach(e=> { %> <%
-          e.mobileNumber.forEach(o=> { %>
           <form action="/admin" method="get">
             <tr>
-              <td style="color: black;"><%= i %></td>
-              <td style="color: black;"><%= e.name %></td>
-              <td style="color: black"><%= o %></td>
-              <td style="color: black"><%= e.tokenNumber+i-1 %></td>
+              <td style="color: black;"><%= UserForm.name %></td>
+              <td style="color: black"><%= UserForm.mobileNumber %></td>
+              <td style="color: black"><%= UserForm.tokenNumber %></td>
             </tr>
           </form>
-          <% i+=1; %> <% }); %>
-          <% }); %>
         </tbody>
       </table>
     </div>

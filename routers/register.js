@@ -39,14 +39,41 @@ router.get("/admin/databydate/:date", verify, async (req, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin/databy/:token", async (req, res) => {
+// router.get("/admin/databy/:token", async (req, res) => {
+//   try {
+//     const token = req.params.token;
+//     const UserData = await Form.find({tokenNumber: token},{
+//       mobileNumber:1,name:1,tokenNumber:1
+//     });
+//     res.render("pdf", {
+//       UserForm:  UserData,
+//     });
+//   } catch (err) {
+//     res.status(400).send(`err ${err}`);
+//   }
+// });
+router.get("/admin/databy/:t1/:t2", async (req, res) => {
   try {
-    const token = req.params.token;
-    const UserData = await Form.find({tokenNumber: token},{
-      mobileNumber:1,name:1,tokenNumber:1
-    });
+    const token = req.params.t2;
+    const originalToken = req.params.t1;
+    const UserData = await Form.findOne(
+      { tokenNumber: token },
+      {
+        mobileNumber: 1,
+        name: 1,
+        tokenNumber: 1,
+      }
+    );
+
+    const originalData = {
+      name: UserData.name,
+      mobileNumber:
+        UserData.mobileNumber[parseInt(originalToken) - parseInt(token)],
+      tokenNumber: originalToken,
+    };
+    console.log(originalData);
     res.render("pdf", {
-      UserForm:  UserData,
+      UserForm: originalData,
     });
   } catch (err) {
     res.status(400).send(`err ${err}`);
