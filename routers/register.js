@@ -39,6 +39,19 @@ router.get("/admin/databydate/:date", verify, async (req, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
+router.get("/admin/databy/:token", async (req, res) => {
+  try {
+    const token = req.params.token;
+    const UserData = await Form.find({tokenNumber: token},{
+      mobileNumber:1,name:1,tokenNumber:1
+    });
+    res.render("pdf", {
+      UserForm:  UserData,
+    });
+  } catch (err) {
+    res.status(400).send(`err ${err}`);
+  }
+});
 router.get("/admin", verify, async (req, res) => {
   try {
     const UserForm = await Form.find();
