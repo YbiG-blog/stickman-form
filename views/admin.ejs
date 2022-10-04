@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stickman-Data-form</title>
-    <link rel="stylesheet" href="../public/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -115,7 +114,10 @@
               <td style="color: whitesmoke"><%= o %></td>
               <td style="color: whitesmoke"><%= e.tokenNumber+i-1 %></td>
               <td>
-                <a href="/api/user/admin/databy/<%= e.tokenNumber+i-1  %>/<%= e.tokenNumber %>" download="data"
+                <!-- download="data" -->
+                <a
+                  href="/api/user/admin/databy/<%= e.tokenNumber+i-1  %>/<%= e.tokenNumber %>"
+                  target="_blank"
                   ><i
                     class="fa fa-file"
                     style="cursor: pointer; color: black"

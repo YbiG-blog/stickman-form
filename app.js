@@ -23,6 +23,17 @@ app.get("/api/user/", async (req, res) => {
   }
 });
 
+// (async () => {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+//   await page.goto('https://stickman-form.herokuapp.com/api/user/admin', {
+//     waitUntil: 'networkidle2',
+//   });
+//   console.log(await page.title);
+//   await page.pdf({path: 'hn.pdf', format: 'a4'});
+
+//   await browser.close();
+// })();
 app.use("/api/user/", formPage);
 app.use("/api/user/", loginPage);
 

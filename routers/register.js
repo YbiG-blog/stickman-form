@@ -1,8 +1,9 @@
 const express = require("express");
 const router = new express.Router();
 const Form = require("../models/form");
-const verify = require("../middleware/auth");
-const jwtDecode = require("jwt-decode");
+const puppeteer = require("puppeteer");
+// const verify = require("../middleware/auth");
+// const jwtDecode = require("jwt-decode");
 
 router.get("/register", async (req, res) => {
   res.render("register");
@@ -62,25 +63,44 @@ router.get("/admin/databy/:t1/:t2", async (req, res) => {
         mobileNumber: 1,
         name: 1,
         tokenNumber: 1,
-        createdAt : 1
+        createdAt: 1,
       }
     );
 
     const originalData = {
       name: UserData.name,
       mobileNumber:
-      UserData.mobileNumber[parseInt(originalToken) - parseInt(token)],
+        UserData.mobileNumber[parseInt(originalToken) - parseInt(token)],
       tokenNumber: originalToken,
-      createdDate: UserData.createdAt
+      createdDate: UserData.createdAt,
     };
-    console.log(originalData);
     res.render("pdf", {
       UserForm: originalData,
     });
+    // generate pdf through puppeteer
+    // (async () => {
+    //   const browser = await puppeteer.launch();
+    //   const page = await browser.newPage();
+    //   await page.goto(
+    //     `https://stickman-form.herokuapp.com/api/user/admin/databy/${originalToken}/${token}`,
+    //     {
+    //       waitUntil: "networkidle2",
+    //     }
+    //   );
+    //   await page.emulateMediaType("screen");
+    //   const Pdf = await page.pdf({
+    //     path: "download/data.pdf",
+    //     printBackground: true,
+    //     format: "a4",
+    //   });
+
+    //   await browser.close();
+    // })();
   } catch (err) {
     res.status(400).send(`err ${err}`);
   }
 });
+
 router.get("/admin", async (req, res) => {
   try {
     const UserForm = await Form.find();
