@@ -46,37 +46,42 @@
     <div class="container">
       <span class="container m-2">
         <h3
-          style="display: flex; justify-content: center;"
+          style="
+            display: flex;
+            justify-content: center;
+            font-family: 'Times New Roman', Times, serif;
+          "
         >
-        Data For An Employee
+          STICKMAN TECHNOLOGIES
         </h3>
       </span>
       <table class="table">
-        <thead style="color: black; font-weight: 500">
+        <tr>
+          <th style="color: black; font-weight: 400; background-color: yellow">
+            Headings
+          </th>
+          <th style="color: black; font-weight: 400; background-color: yellow">
+            User - Details
+          </th>
+        </tr>
+        <form action="/admin" method="get">
           <tr>
-            <!-- <th scope="col">
-              <h4>S.No.</h4>
-            </th> -->
-            <th scope="col">
-              <h4>Name</h4>
-            </th>
-            <th scope="col">
-              <h4>Mobile</h4>
-            </th>
-            <th scope="col">
-              <h4>TokenNum</h4>
-            </th>
+            <td>Name</td>
+            <td style="color: black"><%= UserForm.name %></td>
           </tr>
-        </thead>
-        <tbody>
-          <form action="/admin" method="get">
-            <tr>
-              <td style="color: black;"><%= UserForm.name %></td>
-              <td style="color: black"><%= UserForm.mobileNumber %></td>
-              <td style="color: black"><%= UserForm.tokenNumber %></td>
-            </tr>
-          </form>
-        </tbody>
+          <tr>
+            <td>Mobile Number</td>
+            <td style="color: black"><%= UserForm.mobileNumber %></td>
+          </tr>
+          <tr>
+            <td>Token Number</td>
+            <td style="color: black"><%= UserForm.tokenNumber %></td>
+          </tr>
+          <tr>
+            <td>Date Created</td>
+            <td style="color: black"><%= UserForm.createdDate %></td>
+          </tr>
+        </form>
       </table>
     </div>
     <script

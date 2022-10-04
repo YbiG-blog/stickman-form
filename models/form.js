@@ -12,7 +12,7 @@ const FormSchema = new Schema(
       {
         type: Number,
         required: [true, "Please add mobile"],
-        unique: true,
+        unique: false,
         minlength: 10,
         maxlength: 10,
       },

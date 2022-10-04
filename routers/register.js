@@ -22,7 +22,7 @@ router.post("/register", async ({ body }, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin/databydate/:date", verify, async (req, res) => {
+router.get("/admin/databydate/:date", async (req, res) => {
   try {
     const date = req.params.date;
     const UserForm = await Form.find();
@@ -62,14 +62,16 @@ router.get("/admin/databy/:t1/:t2", async (req, res) => {
         mobileNumber: 1,
         name: 1,
         tokenNumber: 1,
+        createdAt : 1
       }
     );
 
     const originalData = {
       name: UserData.name,
       mobileNumber:
-        UserData.mobileNumber[parseInt(originalToken) - parseInt(token)],
+      UserData.mobileNumber[parseInt(originalToken) - parseInt(token)],
       tokenNumber: originalToken,
+      createdDate: UserData.createdAt
     };
     console.log(originalData);
     res.render("pdf", {
@@ -79,7 +81,7 @@ router.get("/admin/databy/:t1/:t2", async (req, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin", verify, async (req, res) => {
+router.get("/admin", async (req, res) => {
   try {
     const UserForm = await Form.find();
     for (let i = 1; i < UserForm.length; i++) {
