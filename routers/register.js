@@ -16,7 +16,12 @@ router.post("/register", async ({ body }, res) => {
       name,
       mobileNumber,
     });
-
+    const totalUser = await Form.find();
+    tokenNum =
+      totalUser[totalUser.length - 1].tokenNumber +
+      totalUser[totalUser.length - 1].mobileNumber.length;
+    console.log(tokenNum);
+    formCreate.tokenNumber = tokenNum;
     await formCreate.save();
     res.redirect("/api/user/success");
   } catch (err) {
@@ -104,16 +109,6 @@ router.get("/admin/databy/:t1/:t2", async (req, res) => {
 router.get("/admin", async (req, res) => {
   try {
     const UserForm = await Form.find();
-    for (let i = 1; i < UserForm.length; i++) {
-      let mobileLen = UserForm[i - 1].mobileNumber.length;
-      let tokenValue = UserForm[i - 1].tokenNumber + mobileLen;
-      await Form.findOneAndUpdate(
-        { _id: UserForm[i]._id },
-        {
-          $set: { tokenNumber: tokenValue },
-        }
-      );
-    }
     res.render("admin", {
       UserForm: UserForm,
     });
