@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
     const token = req.cookies.jwt_stickman;
 
     if (!token) {console.log(token);
-      return res.status(401).send({ msg: "Access Denied" });
+      return res.status(401).send({ msg: "Access Denied and please login first" });
     }
 
     const token_verify = jwt.verify(token, process.env.TOKEN_SECRET_KEY);

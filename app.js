@@ -36,7 +36,6 @@ app.get("/api/user/", async (req, res) => {
 // })();
 app.use("/api/user/", formPage);
 app.use("/api/user/", loginPage);
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running successfully on port : ${port}`);

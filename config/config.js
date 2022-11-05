@@ -13,5 +13,5 @@ mongoose
     console.log("Data base is connected successfully");
   })
   .catch((err) => {
-    console.log(err);
+    console.log(`err ${err}`);
   });

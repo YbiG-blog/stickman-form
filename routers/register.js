@@ -2,8 +2,8 @@ const express = require("express");
 const router = new express.Router();
 const Form = require("../models/form");
 const puppeteer = require("puppeteer");
-// const verify = require("../middleware/auth");
-// const jwtDecode = require("jwt-decode");
+const verify = require("../middleware/auth");
+const jwtDecode = require("jwt-decode");
 
 router.get("/register", async (req, res) => {
   res.render("register");
@@ -28,7 +28,7 @@ router.post("/register", async ({ body }, res) => {
     res.status(400).send(`err ${err}`);
   }
 });
-router.get("/admin/databydate/:date", async (req, res) => {
+router.get("/admin/databydate/:date", verify, async (req, res) => {
   try {
     const date = req.params.date;
     const UserForm = await Form.find();
@@ -58,7 +58,7 @@ router.get("/admin/databydate/:date", async (req, res) => {
 //     res.status(400).send(`err ${err}`);
 //   }
 // });
-router.get("/admin/databy/:t1/:t2", async (req, res) => {
+router.get("/admin/databy/:t1/:t2", verify, async (req, res) => {
   try {
     const token = req.params.t2;
     const originalToken = req.params.t1;
@@ -106,7 +106,7 @@ router.get("/admin/databy/:t1/:t2", async (req, res) => {
   }
 });
 
-router.get("/admin", async (req, res) => {
+router.get("/admin", verify, async (req, res) => {
   try {
     const UserForm = await Form.find();
     res.render("admin", {
